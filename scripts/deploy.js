@@ -5,7 +5,7 @@ const hre = require("hardhat");
 const MAINNET_USDC = "0x8AC76a51cc950d9822D68b83fE1Ad97B32Cd580d"; // Binance-Peg USDC (18 dec)
 const PANCAKE_V3_SWAP_ROUTER = "0x1b81D678ffb9C0263b24A97847620C99d213eB14"; // BSC mainnet + testnet
 
-const AGENT_CARD = process.env.AGENT_CARD_URI || "https://www.stax.best/.well-known/agent-card.json";
+const AGENT_CARD = process.env.AGENT_CARD_URI || "https://stax-bnb.vercel.app/.well-known/agent-card.json";
 
 const list = (v) => (v || "").split(",").map((s) => s.trim()).filter(Boolean);
 

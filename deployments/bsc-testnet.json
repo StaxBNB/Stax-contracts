@@ -1,31 +1,45 @@
 {
   "chainId": 97,
   "network": "bscTestnet",
-  "deployedAt": "2026-09-25",
-  "deployer": "0xE2D654a82893c5F97A40332D0f0ACb6Ad34318b5",
-  "agentSigner": "0x71a909625BA8B0c67BA16a9B620De41FB2488D95",
+  "deployedAt": "2026-09-29",
+  "note": "Live set used by the app (web/.env.example). Redeployed 2026-09-29 with a new deployer + agent signer; mock USDC / AAPLx / TSLAx and their PancakeSwap V3 pools are reused from the 2026-09-25 deploy (see `previous`).",
+  "verifiedOnBscScan": "checked 2026-10-01: StaxExecutor, InferenceVerifier, IdentityRegistry, MockUSDC = exact match; AAPLx / TSLAx = similar match (same MockERC20 source as MockUSDC)",
+  "deployer": "0xAEc63F6cEbBfacdC3516992b6ec396147c9c8361",
+  "agentSigner": "0x118271A901CD726e338BAAa464693539874E40b8",
   "treasury": "0xeAAedEae0d96f2155062c8B47832af87A5d4797A",
-  "deployBlock": 132984398,
+  "deployBlock": 134036475,
   "contracts": {
     "MockUSDC": {
       "address": "0x83f2dd5155dfe7d8eaa3d390c21fe89e2f1968bb",
-      "tx": "0x420fd9ab048bc5dd20c1d5ac6077e9c91834fe93949ea29ade5e6e92699371ac"
+      "tx": "0x420fd9ab048bc5dd20c1d5ac6077e9c91834fe93949ea29ade5e6e92699371ac",
+      "note": "reused from the 2026-09-25 deploy"
     },
     "InferenceVerifier": {
-      "address": "0x674031d24b0b7874f1b9b278b98ebfebbdaa96ec",
-      "tx": "0xedc9abfaec5fb8f9bedf8813ee1e81d0a4843bb0986fa8a434a4df970a1a5c88"
+      "address": "0x15cfe310256c482e28699115430f6a323386e801",
+      "tx": "0xf0dbe601b4579bf8f94351f2b0da93f5b9f9dcbbda558886293536e300173d7e"
     },
     "IdentityRegistry": {
-      "address": "0x5dd8fcb6a206b9f24847fbbc925e642b836555ea",
-      "tx": "0xb5f89789e2cbb28c8ccd83a64c237d65f5d79a129771059e8c2bef2802f0d933",
-      "staxAgentId": 1,
-      "registerTx": "0x15103c12cec56c9869a451e177f60dfee51b0243ef447d8b72b0e5966c83d34c"
+      "address": "0xfbc601d4d084ac9f134b88662cf5162c27e8ff4b",
+      "tx": "0x1132bed65714b51df67aaee787290561c51b126aa6c9cabdc0e49341ab6bc016",
+      "agents": {
+        "1": {
+          "registerTx": "0xbbfeb356b01be62977888f2eb8906e33ab3288e48ac2b5351e31d5d9cff292cf",
+          "tokenURI": "https://www.stax.best/.well-known/agent-card.json",
+          "note": "legacy card URL (no setter on the registry); superseded by agentId 2"
+        },
+        "2": {
+          "registerTx": "0xd6f2dede78210415e5c7704a665ce34358d561e047ff96b69f72dc9922eafcad",
+          "tokenURI": "https://stax-bnb.vercel.app/.well-known/agent-card.json",
+          "note": "Vera — the agentId the app stamps on plans (NEXT_PUBLIC_STAX_AGENT_ID=2) since 2026-10-01"
+        }
+      }
     },
     "StaxExecutor": {
-      "address": "0x8d684d9efcd779e69c29901292bd88266d5d2bdf",
-      "tx": "0xbf054a35c4752c836562699544c01e95f6de16fe2cf17b77f7d0d14e5e112f29",
-      "setRouterTx": "0xce4e1bda20dd4aef532dc3e72b0d43e146c416ff194984b718dafd21edc5e658",
-      "setAssetsTx": "0x4d09ad73596757b451a0ff251f68521011df7ca0c09f359a6146ade87771b964"
+      "address": "0x7c67f22f27fc50ed99a848e5a4b6324b9ea16a3d",
+      "block": 134036496,
+      "tx": "0xcf23c635e04ecba0880667894b42716266c06d31bf24ee2fd8479d3e975320ec",
+      "setRouterTx": "0xb341f2bb67c0c1b64348dfafd39c2ea0251e64116e4807c4658fbaab39187125",
+      "setAssetsTx": "0x1cfed868ea4b924405d3cde7b558fa7873e18ab9ee2754cb6285f28309449ba0"
     }
   },
   "dex": {
@@ -42,7 +56,13 @@
       "initPriceUsd": 230,
       "poolTx": "0x2c86d220830bbeca1961b642f187bb925680504a9886be8fb9f6bf035ed714bd",
       "liquidityTx": "0x91f106bc9f8185b9c613055c9e5feb214c51570565febbf90f1cd708e20d11f2",
-      "liquidity": "~50 AAPLx + ~11.5k mUSDC full range"
+      "liquidity": "~50 AAPLx + ~11.5k mUSDC full range",
+      "repriced": {
+        "at": "2026-10-01",
+        "priceUsd": 333.02,
+        "tx": "0x4aa98852b88124d8e68c153e3c64543fd727efbfad784a1222cb25d4103dc87b",
+        "note": "swapped to the real AAPL close (Yahoo) with a sqrtPriceLimit at the target"
+      }
     },
     "TSLAx": {
       "address": "0x1affa0ee05549c777772a100cb32877dd1390b9e",
@@ -52,13 +72,35 @@
       "initPriceUsd": 250,
       "poolTx": "0xe013d8f7d1394f102dbf6f4e5529296cc8c39fcc8e4a1130a735b2928749d2c7",
       "liquidityTx": "0xbe1f2790e2337b1bfe252444d1cd5aefddbfabac43a6f18e2e9ca1ec910387ff",
-      "liquidity": "~50 TSLAx + ~12.5k mUSDC full range"
+      "liquidity": "~50 TSLAx + ~12.5k mUSDC full range",
+      "repriced": {
+        "at": "2026-10-01",
+        "priceUsd": 354.81,
+        "tx": "0xecc2ef24f5c76328cd9b682f83fc24920c2f312d1c03f8e1f5ba2965746ba878",
+        "note": "swapped to the real TSLA close (Yahoo) with a sqrtPriceLimit at the target"
+      }
     }
   },
   "erc8004": {
     "identityRegistry": "0x8004A818BFB912233c491871b3d84c89A494BD9e",
-    "veraAgentId": "97:2473",
-    "registerTx": "0xe9b4271eb5553cd8a0801769663afa198238265a59189ece9f1f347836794957",
-    "owner": "0x71a909625BA8B0c67BA16a9B620De41FB2488D95"
+    "veraAgentId": "97:2543",
+    "registerTx": "0xb29cdffae8a053c16d10b80df0fc570071f91da064716957282f90cf1f413113",
+    "owner": "0x118271A901CD726e338BAAa464693539874E40b8",
+    "agentURI": "https://stax-bnb.vercel.app/.well-known/agent-card.json",
+    "superseded": {
+      "agentId": "97:2473",
+      "owner": "0x71a909625BA8B0c67BA16a9B620De41FB2488D95",
+      "note": "registered by the 2026-09-25 agent signer with the legacy stax.best card"
+    }
+  },
+  "previous": {
+    "deployedAt": "2026-09-25",
+    "deployer": "0xE2D654a82893c5F97A40332D0f0ACb6Ad34318b5",
+    "agentSigner": "0x71a909625BA8B0c67BA16a9B620De41FB2488D95",
+    "deployBlock": 132984398,
+    "InferenceVerifier": "0x674031d24b0b7874f1b9b278b98ebfebbdaa96ec",
+    "IdentityRegistry": "0x5dd8fcb6a206b9f24847fbbc925e642b836555ea",
+    "StaxExecutor": "0x8d684d9efcd779e69c29901292bd88266d5d2bdf",
+    "note": "still deployed and whitelisted, but no longer used by the app"
   }
 }
